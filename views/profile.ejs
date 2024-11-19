@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+    <title>Favorite Movie Tracker</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/Savage-Authentication/savage-auth/public/style.css">
+</head>
+<body>
+<div class="container">
+
+    <div class="page-header text-center">
+        <h1><span class="fa fa-anchor"></span> Profile Page</h1>
+        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+    </div>
+
+    <div class="row">
+
+        <!--List of all movies ranked-->
+        <div class="col-sm-6">
+          <h3>Movies</h3>
+          <ul class="movies">
+          <% for(var i=0; i<movies.length; i++) { %>
+              <li class="movie">
+                  <form class="movie" data-id="<%= movies[i]._id %>" action="/profile/<%= movies[i]._id %>?_method=PUT" method="POST">
+                      <span class="movieN"><%= movies[i].movieName %></span>
+                      <span class="genreN"><%= movies[i].genre %></span>
+                      <span class="thumbUp"><%= movies[i].thumbUp %></span> <!-- thumbsUp count -->
+                      <div class="options">
+                          <span><i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
+                          <span><i class="fa fa-thumbs-down" aria-hidden="true"></i></span>
+                          <span><i class="fa fa-trash-o" aria-hidden="true"></i></span> 
+                      </div>
+                  </form>
+              </li>
+          <% } %>
+          </ul>
+      </div>
+      
+
+        <!--Add a movie-->
+        <h2>Add a movie</h2>
+        <% if (user.local.email) { %>
+          <form action="/messages" method="POST">
+            <input type="text" placeholder="King Kong" name="movieName">
+            <label for="genre">Choose a genre:</label>
+                <select name="genre" id="genre">
+                  <option value="thriller">Thriller</option>
+                  <option value="horror">Horror</option>
+                  <option value="comdey">Comdey</option>
+                  <option value="romance">Romance</option>
+                  <option value="sci-fi">Sci-fi</option>
+                  <option value="action">Action</option>
+                </select>
+            <input type="text" placeholder="This movie is about..." name="plot">
+            <input type="text" placeholder="1 hr 30 min" name="duration">
+            <input type="text" placeholder="I love/hate this movie..." name="why">
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+        <% } %>
+
+
+        <!-- Movie details section -->
+        <div id="movieDetailsSection" style="display:none;">
+          <h2 id="movieTitle"></h2>
+          <p id="movieGenre"></p>
+          <p id="movieDescription"></p>
+          <p id="movieReleaseDate"></p>
+          <p id="movieRating"></p>
+        </div>
+
+        
+
+
+</div>
+
+<script src="/main.js"></script>
+
+</body>
+</html>
