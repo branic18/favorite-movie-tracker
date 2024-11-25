@@ -48,21 +48,19 @@ Array.from(thumbIcons).forEach(function(element) {
 
 Array.from(trash).forEach(function(element) {
     element.addEventListener('click', function() {
-        // Get the movie's _id (usually it should be stored in a data attribute on the form or an element)
-        const movieId = element.closest('form').dataset.id;  // Assuming the _id is stored in a form's data-id attribute
         
-        // Send a DELETE request to delete the movie
+        const movieId = element.closest('form').dataset.id; 
+  
         fetch(`/profile/${movieId}`, {
-            method: 'DELETE', // DELETE method to delete the resource
+            method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
             }
         })
         .then(function(response) {
-            // On successful deletion, remove the movie from the DOM (without reloading the page)
             if (response.ok) {
-                const movieItem = element.closest('li'); // Get the list item containing the movie
-                movieItem.remove(); // Remove it from the list
+                const movieItem = element.closest('li'); // Getting the list item containing the movie
+                movieItem.remove();
             }
         })
         .catch(function(error) {
@@ -72,42 +70,54 @@ Array.from(trash).forEach(function(element) {
 });
 
 
-// This is for displaying movie detail
-document.addEventListener('DOMContentLoaded', function() {
+//////// This is for displaying movie details
 
-  const movieItems = document.querySelectorAll('.movie');  // Select all the '.movie' list items
+  document.addEventListener("DOMContentLoaded", function() {
 
-  const movieDetailsSection = document.getElementById('movieDetails');
-  if (!movieDetailsSection) {
-    console.error('movieDetailsSection element not found in DOM');
-    return;
-  }
-
-  movieItems.forEach(item => {
+    const movieItems = document.querySelectorAll('li[data-id]');
+  
+    const movieDetailsSection = document.getElementById('movieDetailsSection');
+    const movieTitle = document.getElementById('movieTitle');
+    const movieGenre = document.getElementById('movieGenre');
+    const moviePlot = document.getElementById('moviePlot');
+    const movieDuration = document.getElementById('movieDuration');
+    const movieWhy = document.getElementById('movieWhy');
+    
+    movieItems.forEach(item => {
       item.addEventListener('click', function() {
-          const movieId = this.dataset.id;
+    
+        console.log("Clicked movie data:", item.dataset);
+        
+        // Getting the data from the clicked movie item
+        const movieName = item.getAttribute('data-name');
+        const movieGenreText = item.getAttribute('data-genre');
+        const moviePlotText = item.getAttribute('data-plot');
+        const movieDurationText = item.getAttribute('data-duration');
+        const movieWhyText = item.getAttribute('data-why');
+        
+        // Logging the values to display so I know what's going to be displayed
+        console.log("Movie name:", movieName);
+        console.log("Movie genre:", movieGenreText);
+        console.log("Movie plot:", moviePlotText);
+        console.log("Movie duration:", movieDurationText);
+        console.log("Movie why:", movieWhyText);
 
-          fetch(`/movies/${movieId}`)
-              .then(response => response.json())
-              .then(movie => {
-                console.log('Fetched movie:', movie);
+        // The data shouldn't be null or undefined
+        if (movieName && movieGenreText && moviePlotText && movieDurationText && movieWhyText) {
+          // Adding movie details to the browser
+          movieTitle.textContent = movieName;
+          movieGenre.textContent = "Genre: " + movieGenreText;
+          moviePlot.textContent = "Plot: " + moviePlotText;
+          movieDuration.textContent = "Duration: " + movieDurationText;
+          movieWhy.textContent = "Why I love this movie: " + movieWhyText;
 
-                if (!movie) {
-                  console.log('Movie data not found');
-                  return;
-                }
-
-                  document.getElementById('movieTitle').innerText = `Title: ${movie.movieName}`;
-                  document.getElementById('movieGenre').innerHTML = `Genre: ${movie.genre}`;
-                  document.getElementById('movieDescription').textContent = `Description: ${movie.description}`;
-                  document.getElementById('movieReleaseDate').textContent = `Release Date: ${movie.releaseDate}`;
-                  document.getElementById('movieRating').textContent = `Rating: ${movie.rating}`;
-
-                  movieDetailsSection.style.display = 'block';  // Makes this section visible
-              })
-              .catch(err => console.log('Error fetching movie details:', err));
+          // Show the movie details section
+          movieDetailsSection.style.display = 'block';
+        } else {
+          console.error("Missing movie data.");
+        }
       });
+    });
   });
-});
 
 
