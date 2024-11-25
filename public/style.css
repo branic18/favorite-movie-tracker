@@ -6,6 +6,254 @@ img{
   height: 200px;
 }
 
-#movieDetails {
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.jumbotron {
+  text-align: center;
+  background-color: transparent;
+  border: none;
+  margin-top: 50px;
+}
+
+.jumbotron img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-height: 500px;
+  object-fit: cover;
+}
+
+.btn {
+  background-color: #ff4500;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 10px 5px;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 5px;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #e43f00;
+}
+
+.btn i {
+  margin-right: 5px;
+}
+
+.movie-info {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #555;
+  text-align: center;
+  font-weight: 500;
+}
+
+
+
+
+#movieDetailsSection {
   display: none;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  margin-top: 20px;
+  clear: left;
+}
+
+.col-1, .col-2 {
+  float: left;
+  width: 45%;
+}
+
+.col-1 {
+  margin-right: 20px;
+}
+
+body {
+  background-color: #1a1a1a; 
+  color: #f0f0f0;
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 18px;
+}
+
+h1 {
+  text-align: center;
+  font-family: 'Cinzel', serif; 
+  font-size: 3rem;
+  color: #ff6f61; 
+  margin-top: 50px;
+}
+
+
+
+/* Movie List Section */
+.movies {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  max-width: 800px;
+  margin: 40px auto 30px; 
+}
+
+/* Each movie item */
+.movies li > form {
+  padding: 15px;
+  margin: 15px 0;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.movies li > form:hover {
+  background-color: #3d3d3d;
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Movie Name, Genre, and Thumbs */
+.movieN, .genreN {
+  font-size: 1.4rem; 
+  font-weight: bold;
+  color: #f0f0f0;
+  flex: 1; /* Allowing movieName and genre to take up space */
+}
+
+.thumbUp {
+  font-size: 1.5rem;
+  color: #ff6f61;
+  margin-left: 10px;
+}
+
+/* Options (like/dislike buttons) */
+.options span {
+  margin-left: 10px;
+  color: #ff6f61;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.options span:hover {
+  color: #e67e22;
+}
+
+/* Movie details section */
+#movieDetailsSection {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  display: none; /* Initially hidden */
+  margin-top: 20px;
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+/* Movie details text */
+#movieDetailsSection h2 {
+  font-family: 'Cinzel', serif;
+  font-size: 2.5rem;
+  color: #ff6f61;
+}
+
+#movieDetailsSection p {
+  font-size: 1.5rem;
+  margin: 10px 0;
+  line-height: 1.6;
+}
+
+/* Form styles */
+form {
+  background-color: #444;
+  padding: 20px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 600px;
+  margin: 10px auto; 
+}
+
+form input, form select, form button, form textarea {
+  width: 100%;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px; 
+  background-color: #666;
+  color: white;
+}
+
+form input, form select {
+  margin-bottom: 15px;
+}
+
+form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+form button {
+  background-color: #ff6f61;
+  border: 1px solid #ff6f61;
+  color: #000;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 16px;  
+}
+
+form button:hover {
+  background-color: #1a1a1a;
+  border: 1px solid #ff6f61;
+  color: #fff;
+}
+
+/* Movie Entry Form Heading */
+h2 {
+  font-family: 'Cinzel', serif;
+  font-size: 2rem;
+  color: #ff6f61;
+  text-align: center;
+  margin-top: 40px;
+}
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 768px) {
+  h1 {
+      font-size: 2rem;
+  }
+
+  .btn {
+      width: 100%;
+      padding: 12px 0;
+      font-size: 18px;
+  }
+
+  .movie-info {
+      font-size: 16px;
+  }
 }
