@@ -3,3 +3,5 @@ Keep track of all the movies you love (or love to watch) with the Favorite Movie
 
 ## Tech Stack:
 EJS, JavaScript, Node.js, Express.js
+
+<img src="/public/img/movie-tracker-UI.png">
