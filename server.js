@@ -41,7 +41,7 @@ app.set('view engine', 'ejs'); // set up ejs for templating
 
 // required for passport- this keeps track of whether the user is logged in or not. Once there's a cookie in the browser it keeps the user logged in
 app.use(session({ // Keeps us logged in, sets up session
-    secret: 'rcbootcamp2021b', // session secret
+    secret: 'movieTrackr4', // session secret
     resave: true,
     saveUninitialized: true
 }));
