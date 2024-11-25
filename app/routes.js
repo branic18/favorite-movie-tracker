@@ -7,7 +7,7 @@ module.exports = function(app, passport, db) {
         res.render('index.ejs');
     });
 
-    const Movie = require('./models/movie'); // importing the Mood model from the mongoose schema
+    const Movie = require('./models/movie'); // importing the Movie model from the mongoose schema
 
     // PROFILE SECTION =========================
     app.get('/profile', isLoggedIn, function(req, res) { 
@@ -33,23 +33,23 @@ module.exports = function(app, passport, db) {
         res.redirect('/');
     });
 
-// message board routes ===============================================================
+// movie board routes ===============================================================
 
     app.post('/messages', (req, res) => {
       db.collection('movies').insertOne({movieName: req.body.movieName, genre: req.body.genre, plot: req.body.plot, duration: req.body.duration, why: req.body.why, thumbUp: 0}, (err, result) => { // save a new document to database
         if (err) return console.log(err)
         console.log('saved to database')
-        res.redirect('/profile') // This reloads the rootpage which triggers another GET request
+        res.redirect('/profile')
       })
     })
 
     app.put('/profile/:movieId', (req, res) => {
       const { ObjectId } = require('mongodb');  // Correctly import ObjectId
   
-      const movieId = req.params.movieId;  // Assign movieId first
-      const { thumbUp } = req.body;  // Get thumbUp from the request body
+      const movieId = req.params.movieId;
+      const { thumbUp } = req.body; 
   
-      // Convert the movieId string into ObjectId after it's assigned
+      // Converting the movieId string into ObjectId after it's assigned
       const movieObjectId = new ObjectId(movieId);
   
       console.log('Received movieId:', movieId);
