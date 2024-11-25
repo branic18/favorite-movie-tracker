@@ -4,24 +4,34 @@
     <title>Favorite Movie Tracker</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/Savage-Authentication/savage-auth/public/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap" rel="stylesheet">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 <div class="container">
 
     <div class="page-header text-center">
-        <h1><span class="fa fa-anchor"></span> Profile Page</h1>
+        <h1><span></span>Favorite Movie Tracker</h1>
         <a href="/logout" class="btn btn-default btn-sm">Logout</a>
     </div>
 
     <div class="row">
 
         <!--List of all movies ranked-->
-        <div class="col-sm-6">
+        <div class="col-1">
           <h3>Movies</h3>
           <ul class="movies">
           <% for(var i=0; i<movies.length; i++) { %>
-              <li class="movie">
+              <li 
+                  data-id="<%= movies[i]._id %>"
+                  data-name="<%= movies[i].movieName %>"
+                  data-genre="<%= movies[i].genre %>"
+                  data-plot="<%= movies[i].plot %>"
+                  data-duration="<%= movies[i].duration %>"
+                  data-why="<%= movies[i].why %>">
+                  
                   <form class="movie" data-id="<%= movies[i]._id %>" action="/profile/<%= movies[i]._id %>?_method=PUT" method="POST">
                       <span class="movieN"><%= movies[i].movieName %></span>
                       <span class="genreN"><%= movies[i].genre %></span>
@@ -37,6 +47,7 @@
           </ul>
       </div>
       
+      <div class="col-2">
 
         <!--Add a movie-->
         <h2>Add a movie</h2>
@@ -51,6 +62,8 @@
                   <option value="romance">Romance</option>
                   <option value="sci-fi">Sci-fi</option>
                   <option value="action">Action</option>
+                  <option value="drama">Drama</option>
+                  <option value="crime">Crime</option>
                 </select>
             <input type="text" placeholder="This movie is about..." name="plot">
             <input type="text" placeholder="1 hr 30 min" name="duration">
@@ -65,12 +78,12 @@
         <div id="movieDetailsSection" style="display:none;">
           <h2 id="movieTitle"></h2>
           <p id="movieGenre"></p>
-          <p id="movieDescription"></p>
-          <p id="movieReleaseDate"></p>
-          <p id="movieRating"></p>
+          <p id="moviePlot"></p>
+          <p id="movieDuration"></p>
+          <p id="movieWhy"></p>
         </div>
 
-        
+      </div>
 
 
 </div>
