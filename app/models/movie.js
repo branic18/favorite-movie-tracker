@@ -9,7 +9,7 @@ const entryFormat = new Schema({
     genre: {
         type: String, 
         required: true,
-        enum: ['thriller', 'horror', 'comdey', 'romance', 'sci-fi', 'action']
+        enum: ['thriller', 'horror', 'comdey', 'romance', 'sci-fi', 'action', 'drama', 'crime']
     },
     plot: {
         type: String,
@@ -29,7 +29,7 @@ const entryFormat = new Schema({
     }
 });
 
-const Movie = mongoose.model('Movie', entryFormat); // Mongoose model is called 'Mood'
-// I can use the 'moods' collection in MongoDB using the Mood model. The model is automatically pluralized by Mongoose -_-
+const Movie = mongoose.model('Movie', entryFormat); // Mongoose model is called 'Movie'
+// I can use the 'movie' collection in MongoDB using the Movie model. The model is automatically pluralized by Mongoose -_-
 
 module.exports = Movie;
